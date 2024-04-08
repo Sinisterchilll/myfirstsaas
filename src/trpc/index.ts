@@ -6,7 +6,7 @@ import {
 } from './trpc'
 import { TRPCError } from '@trpc/server'
 import { db } from '@/db'
-// import { z } from 'zod'
+import { z } from 'zod'
 // import { INFINITE_QUERY_LIMIT } from '@/config/infinite-query'
 // import { absoluteUrl } from '@/lib/utils'
 // import {
@@ -41,17 +41,16 @@ export const appRouter = router({
     }
 
     return { success: true }
-  })
-//   ,
-//   getUserFiles: privateProcedure.query(async ({ ctx }) => {
-//     const { userId } = ctx
+  }),
+  getUserFiles: privateProcedure.query(async ({ ctx }) => {
+    const { userId } = ctx
 
-//     return await db.file.findMany({
-//       where: {
-//         userId,
-//       },
-//     })
-//   }),
+    return await db.file.findMany({
+      where: {
+        userId,
+      },
+    })
+  }),
 
 //   createStripeSession: privateProcedure.mutation(
 //     async ({ ctx }) => {
@@ -194,28 +193,28 @@ export const appRouter = router({
 //       return file
 //     }),
 
-//   deleteFile: privateProcedure
-//     .input(z.object({ id: z.string() }))
-//     .mutation(async ({ ctx, input }) => {
-//       const { userId } = ctx
+  deleteFile: privateProcedure
+    .input(z.object({ id: z.string() }))
+    .mutation(async ({ ctx, input }) => {
+      const { userId } = ctx
 
-//       const file = await db.file.findFirst({
-//         where: {
-//           id: input.id,
-//           userId,
-//         },
-//       })
+      const file = await db.file.findFirst({
+        where: {
+          id: input.id,
+          userId,
+        },
+      })
 
-//       if (!file) throw new TRPCError({ code: 'NOT_FOUND' })
+      if (!file) throw new TRPCError({ code: 'NOT_FOUND' })
 
-//       await db.file.delete({
-//         where: {
-//           id: input.id,
-//         },
-//       })
+      await db.file.delete({
+        where: {
+          id: input.id,
+        },
+      })
 
-//       return file
-   // }),
+      return file
+   }),
 })
 
 export type AppRouter = typeof appRouter
