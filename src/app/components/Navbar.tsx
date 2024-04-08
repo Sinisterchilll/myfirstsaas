@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import MaxWidthWrapper from './MaxWidthWrapper'
-import { buttonVariants } from '@/components/ui/button'
+import { buttonVariants } from '@/app/components/ui/button'
 import {
   LoginLink,
   RegisterLink,
