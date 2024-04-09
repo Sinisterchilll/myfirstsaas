@@ -1,6 +1,6 @@
 // import ChatWrapper from '@/components/chat/ChatWrapper'
 
-import ChatWrapper from '@/app/components/ChatWrapper'
+import ChatWrapper from '@/app/components/chat/ChatWrapper'
 import PdfRenderer from '@/app/components/PdfRenderer'
 import { db } from '@/db'
 // import { getUserSubscriptionPlan } from '@/lib/stripe'

@@ -9,7 +9,7 @@ const f = createUploadthing();
  
 export const ourFileRouter = {
   
-  pdfUploader: f({ pdf: { maxFileSize: "4MB" } })
+  pdfUploader: f({ pdf: { maxFileSize: "8MB" } })
    
     .middleware(async ({ req }) => {
         
@@ -27,7 +27,7 @@ export const ourFileRouter = {
               key: file.key,
               name: file.name,
               userId: metadata.userId,
-              url: `https://uploadthing-prod.s3.us-west-2.amazonaws.com/${file.key}`,
+              url: `https://utfs.io/f/${file.key}`,
               uploadStatus: 'PROCESSING',
             },
         })
