@@ -10,7 +10,11 @@ import { Progress } from "./ui/progress"
 import Dropzone from 'react-dropzone'
 import { Cloud, File, Loader2 } from 'lucide-react'
 
-const UploadDropzone = () => {
+const UploadDropzone = ({
+  isSubscribed,
+}: {
+  isSubscribed: boolean
+}) => {
   const router = useRouter()
 
   const [isUploading, setIsUploading] =
@@ -19,8 +23,8 @@ const UploadDropzone = () => {
     useState<number>(0)
   const { toast } = useToast()
 
-  const { startUpload } = useUploadThing('pdfUploader'
-    // isSubscribed ? 'proPlanUploader' : 'freePlanUploader'
+  const { startUpload } = useUploadThing(
+    isSubscribed ? 'proPlanUploader' : 'freePlanUploader'
   )
 
   const { mutate: startPolling } = trpc.getFile.useMutation(
@@ -102,8 +106,8 @@ const UploadDropzone = () => {
                   or drag and drop
                 </p>
                 <p className='text-xs text-zinc-500'>
-                  {/* PDF (up to {isSubscribed ? "16" : "4"}MB) */}
-                  PDF (up to "4"MB)
+                  PDF (up to {isSubscribed ? "16" : "4"}MB)
+                  
                 </p>
               </div>
 
@@ -153,7 +157,11 @@ const UploadDropzone = () => {
 }
 
 
-const UploadButton = () => {
+const UploadButton = ({
+  isSubscribed,
+}: {
+  isSubscribed: boolean
+}) => {
 
     const [isOpen, setIsOpen] = useState<boolean>(false)
 
@@ -172,8 +180,8 @@ const UploadButton = () => {
       </DialogTrigger>
 
       <DialogContent>
-        {/* <UploadDropzone isSubscribed={isSubscribed} /> */}
-        <UploadDropzone />
+        <UploadDropzone isSubscribed={isSubscribed} />
+        
       </DialogContent>
     </Dialog>
   )

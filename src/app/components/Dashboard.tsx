@@ -14,8 +14,13 @@ import {
 import Skeleton from 'react-loading-skeleton'
 import { format } from 'date-fns'
 import { useState } from "react"
+import { getUserSubscriptionPlan } from '@/lib/stripe'
 
-const Dashboard = () => {
+interface PageProps {
+  subscriptionPlan: Awaited<ReturnType<typeof getUserSubscriptionPlan>>
+}
+
+const Dashboard = ({subscriptionPlan}: PageProps) => {
 
   const [currentlyDeletingFile, setCurrentlyDeletingFile] =
   useState<string | null>(null)
@@ -45,7 +50,7 @@ const { mutate: deleteFile } =
             My Files
           </h1>
   
-          <UploadButton />
+          <UploadButton isSubscribed={subscriptionPlan.isSubscribed} />
         </div>
   
         {/* display all user files */}
