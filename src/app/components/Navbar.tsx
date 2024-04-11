@@ -1,18 +1,18 @@
 import Link from 'next/link'
 import MaxWidthWrapper from './MaxWidthWrapper'
-import { buttonVariants } from '@/app/components/ui/button'
+import { buttonVariants } from './ui/button'
 import {
   LoginLink,
   RegisterLink,
   getKindeServerSession,
 } from '@kinde-oss/kinde-auth-nextjs/server'
 import { ArrowRight } from 'lucide-react'
-// import UserAccountNav from './UserAccountNav'
-// import MobileNav from './MobileNav'
+import UserAccountNav from './UserAccountNav'
+import MobileNav from './MobileNav'
 
-const Navbar = () => {
+const Navbar = async () => {
   const { getUser } = getKindeServerSession()
-  const user = getUser()
+  const user = await getUser()
 
   return (
     <nav className='sticky h-14 inset-x-0 top-0 z-30 w-full border-b border-gray-200 bg-white/75 backdrop-blur-lg transition-all'>
@@ -24,10 +24,10 @@ const Navbar = () => {
             <span>Testifya.</span>
           </Link>
 
-          {/* <MobileNav isAuth={!!user} /> */}
+          <MobileNav isAuth={!!user} />
 
           <div className='hidden items-center space-x-4 sm:flex'>
-            {/* {!user ? ( */}
+            {!user ? (
               <>
                 <Link
                   href='/pricing'
@@ -52,8 +52,8 @@ const Navbar = () => {
                   <ArrowRight className='ml-1.5 h-5 w-5' />
                 </RegisterLink>
               </>
-            {/* ) : ( */}
-              {/* <>
+            ) : (
+              <>
                 <Link
                   href='/dashboard'
                   className={buttonVariants({
@@ -61,9 +61,9 @@ const Navbar = () => {
                     size: 'sm',
                   })}>
                   Dashboard
-                </Link> */}
+                </Link>
 
-                {/* <UserAccountNav
+                <UserAccountNav
                   name={
                     !user.given_name || !user.family_name
                       ? 'Your Account'
@@ -71,9 +71,9 @@ const Navbar = () => {
                   }
                   email={user.email ?? ''}
                   imageUrl={user.picture ?? ''}
-                /> */}
-              {/* </>
-            )} */}
+                />
+              </>
+            )}
           </div>
         </div>
       </MaxWidthWrapper>
