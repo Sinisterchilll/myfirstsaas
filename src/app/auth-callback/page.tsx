@@ -3,6 +3,7 @@
 import { useRouter, useSearchParams } from 'next/navigation'
 import { trpc } from '../_trpc/client'
 import { Loader2 } from 'lucide-react'
+import { Suspense } from 'react'
 
 const Page = () => {
     const router = useRouter()
@@ -48,6 +49,13 @@ const Page = () => {
     // If none of the above conditions are met, return null or an appropriate component
     return null
   }
+
+  const SuspensePage = () => (
+    <Suspense fallback={<div>Loading...</div>}>
+      <Page />
+    </Suspense>
+  )
+
   
-  export default Page
+  export default SuspensePage
   
