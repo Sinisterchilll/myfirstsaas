@@ -21,6 +21,7 @@ const Providers = ({ children }: PropsWithChildren) => {
     })
   )
 
+  
   return (
     <trpc.Provider
       client={trpcClient}

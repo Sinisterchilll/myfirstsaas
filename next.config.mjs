@@ -24,6 +24,11 @@ const nextConfig = {
         config.resolve.alias.encoding = false
         return config
       },
+
+      images: {
+        domains: ['lh3.googleusercontent.com'],
+      },
+      
 };
 
 export default nextConfig;
