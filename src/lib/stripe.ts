@@ -61,5 +61,5 @@ export async function getUserSubscriptionPlan() {
     stripeCustomerId: dbUser.stripeCustomerId,
     isSubscribed,
     isCanceled,
-  }
+  }  
 }
