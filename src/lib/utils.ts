@@ -49,7 +49,7 @@ export function constructMetadata({
     },
     icons,
     metadataBase: new URL('https://testifya.live'),
-    themeColor: '#FFF',
+    // themeColor: '#FFF',
     ...(noIndex && {
       robots: {
         index: false,

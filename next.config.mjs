@@ -25,8 +25,15 @@ const nextConfig = {
         return config
       },
 
-      images: {
-        domains: ['lh3.googleusercontent.com'],
+      images: { 
+        // domains: [],
+        remotePatterns: [
+          {
+            protocol: 'https',
+            hostname: 'lh3.googleusercontent.com',
+            pathname: '**',
+          },
+        ],
       },
       
 };
