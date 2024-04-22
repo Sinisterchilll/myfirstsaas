@@ -5,7 +5,7 @@ import { cn, constructMetadata } from "@/lib/utils";
 import Navbar from "./components/Navbar";
 import Providers from "@/app/components/Providers";
 import { Toaster } from "@/app/components/ui/toaster";
-
+import { Analytics } from "@vercel/analytics/react"
 import 'react-loading-skeleton/dist/skeleton.css'
 import 'simplebar-react/dist/simplebar.min.css'
 import { Viewport } from "next";
@@ -33,6 +33,7 @@ export default function RootLayout({
             <Toaster />
             <Navbar />
             {children}
+            <Analytics/>
           </body>
           </Providers>
     </html>
