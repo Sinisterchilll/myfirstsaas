@@ -10,6 +10,7 @@ import 'react-loading-skeleton/dist/skeleton.css'
 import 'simplebar-react/dist/simplebar.min.css'
 import { Viewport } from "next";
 
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = constructMetadata()
@@ -25,6 +26,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="light">
+      <head>
+      <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.$sitegpt = [];
+              (function() {
+                var d = document, s = d.createElement("script");
+                s.src = "https://sitegpt.ai/widget/398509972255670858.js";
+                s.async = 1;
+                d.getElementsByTagName("head")[0].appendChild(s);
+              })();
+            `,
+          }}
+        />
+      </head>
       <Providers>
       <body className={cn(
             'min-h-screen font-sans antialiased grainy',
@@ -35,7 +51,9 @@ export default function RootLayout({
             {children}
             <Analytics/>
           </body>
+          
           </Providers>
     </html>
   );
 }
+
